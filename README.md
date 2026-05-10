@@ -3,32 +3,75 @@
 ## WEEK-1 (Digital VLSI SoC Design and Planning – Foundation Phase)
 
 <details>
-<summary><b>PHASE 1 — OpenLANE Flow Familiarity</summary>
+<summary><b>PHASE 1 — OpenLANE Flow Familiarity</b></summary>
+<br>
+
+The initial steps to invoke openlane flow.
 
 <img width="1124" height="735" alt="Image" src="https://github.com/user-attachments/assets/0e4e3ee1-65dd-491e-8d06-3cc6cfb8f23e" />
-<img width="1589" height="889" alt="Image" src="https://github.com/user-attachments/assets/0770f7a9-92c5-4bca-994d-b480e60e51ba" />
-<img width="1585" height="881" alt="Image" src="https://github.com/user-attachments/assets/6a9ca41d-4761-4b58-a9ae-30af855a9b03" />
-<img width="1587" height="881" alt="Image" src="https://github.com/user-attachments/assets/e6046bbe-1c9a-4fb4-b78c-c5514174da4e" />
-<img width="1594" height="854" alt="Image" src="https://github.com/user-attachments/assets/73bd79d2-3f4e-4d63-843d-59aff27cab39" />
+<br>
 
+Prepping the design involves setting all the environment variables like PDK, SDC file and standard cell library used. Below statistics shows the synthesis report about the standard cells used to synthesize picorv32a netlist. 
+
+<img width="1589" height="889" alt="Image" src="https://github.com/user-attachments/assets/0770f7a9-92c5-4bca-994d-b480e60e51ba" />
+<br>
+
+Flop ratio = no.of flipflops/Total no of cells = 1613/15762 = 10.2%. 
+
+<img width="1585" height="881" alt="Image" src="https://github.com/user-attachments/assets/6a9ca41d-4761-4b58-a9ae-30af855a9b03" />
+
+<img width="1587" height="881" alt="Image" src="https://github.com/user-attachments/assets/e6046bbe-1c9a-4fb4-b78c-c5514174da4e" />
+<br>
+
+Synthesis report shows the area occupied by the logic
+ 
+<img width="1594" height="854" alt="Image" src="https://github.com/user-attachments/assets/73bd79d2-3f4e-4d63-843d-59aff27cab39" />
+<br>
+Timing report generated after the synthesis step. Both TNS and WNS are zero. Worst slack is 0.52ns. Library used ``nom`` typical library.
 
 </details>
 
 <details>
-<summary>PHASE 2 — Floorplan Fundamentals</summary>
+<summary><b>PHASE 2 — Floorplan Fundamentals</b></summary>
+<br>
+
+<img width="1041" height="470" alt="Image" src="https://github.com/user-attachments/assets/4541c22d-58b9-4a94-aab1-1fb70d1bac02" />
+<br>
+
+Aspect ration and the utilization factor in the config.tcl file.
+
+<img width="1033" height="532" alt="Image" src="https://github.com/user-attachments/assets/c2b23f29-930f-42d7-9d14-eae546871440" />
+<br>
+
+Die area from the def file generated after the floorplan step
+
+<img width="1047" height="548" alt="Image" src="https://github.com/user-attachments/assets/ff0ee2d2-213c-4efa-9fda-7b46157034d8" />
+<br>
+
+Changing the  utilization factor to 30% and then running the floor plan again. 
 
 <img width="1004" height="360" alt="Image" src="https://github.com/user-attachments/assets/52faf8f2-21ac-403e-8fe4-632135d24758" />
-<img width="1033" height="532" alt="Image" src="https://github.com/user-attachments/assets/c2b23f29-930f-42d7-9d14-eae546871440" />
-<img width="732" height="742" alt="Image" src="https://github.com/user-attachments/assets/6d645a1f-b393-4655-a012-f452dd72daa5" />
-<img width="1047" height="548" alt="Image" src="https://github.com/user-attachments/assets/ff0ee2d2-213c-4efa-9fda-7b46157034d8" />
+<br>
+
+Die area is changed as it can be observed from the new def file.
+
 <img width="1007" height="513" alt="Image" src="https://github.com/user-attachments/assets/164985ef-9d7f-4bfe-94a6-5f5e48e38e76" />
-<img width="1041" height="470" alt="Image" src="https://github.com/user-attachments/assets/4541c22d-58b9-4a94-aab1-1fb70d1bac02" />
+<br>
+
+
+<img width="732" height="742" alt="Image" src="https://github.com/user-attachments/assets/6d645a1f-b393-4655-a012-f452dd72daa5" />
+<br>
+
 <img width="1322" height="796" alt="Image" src="https://github.com/user-attachments/assets/b19725be-bd63-45b2-87c4-cb8d50c8d276" />
+<br>
+
+RAM is a macro different from a standard cell. These Macro's are placed along with preplaced cells before floorplan and placement. During the placement stage standard cells are placed. These Macro are blackboxed, it means these macro's are already implemented so only the input and output pins.
 
 </details>
 
 <details>
-<summary>PHASE 3 — Timing Literacy with Ideal Clocks</summary>
+<summary><b>PHASE 3 — Timing Literacy with Ideal Clocks</b></summary>
+<br>
 
 <img width="947" height="718" alt="Image" src="https://github.com/user-attachments/assets/017171cb-81f8-4f1e-ac68-5ed5fe50f101" />
 <img width="956" height="304" alt="Image" src="https://github.com/user-attachments/assets/6012fdc5-9234-4e23-abcf-d7931dde9bfc" />
@@ -45,7 +88,8 @@
 </details>
 
 <details>
-<summary>PHASE 4 — CTS and Timing with Real Clocks</summary>
+<summary><b>PHASE 4 — CTS and Timing with Real Clocks</b></summary>
+<br>
 
 
 <img width="941" height="638" alt="Image" src="https://github.com/user-attachments/assets/f5387b10-1b9f-4280-845f-5418732a1bba" />
@@ -62,7 +106,8 @@
 </details>
 
 <details>
-<summary>PHASE 5 — PDN Awareness</summary>
+<summary><b>PHASE 5 — PDN Awareness</b></summary>
+<br>
 
 <img width="962" height="679" alt="Image" src="https://github.com/user-attachments/assets/385f14e5-a0be-4e05-b4fd-855ca9766e1b" />
 <img width="1355" height="826" alt="Image" src="https://github.com/user-attachments/assets/49d62861-6304-4777-b5cd-704cab887eab" />
