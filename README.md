@@ -73,17 +73,43 @@ RAM is a macro different from a standard cell. These Macro's are placed along wi
 <summary><b>PHASE 3 — Timing Literacy with Ideal Clocks</b></summary>
 <br>
 
-<img width="947" height="718" alt="Image" src="https://github.com/user-attachments/assets/017171cb-81f8-4f1e-ac68-5ed5fe50f101" />
+The ``pre_sta.conf`` file used to run timing analysis using OpenSTA
+
 <img width="956" height="304" alt="Image" src="https://github.com/user-attachments/assets/6012fdc5-9234-4e23-abcf-d7931dde9bfc" />
-<img width="1117" height="622" alt="Image" src="https://github.com/user-attachments/assets/c99a0365-05c3-4474-8ae7-cf0b7bba6933" />
+<br>
+
+<img width="947" height="718" alt="Image" src="https://github.com/user-attachments/assets/017171cb-81f8-4f1e-ac68-5ed5fe50f101" />
+<br>
+
 <img width="942" height="597" alt="Image" src="https://github.com/user-attachments/assets/23bd98d7-a7c7-4f65-927f-144a19349a9d" />
+<br>
+
 <img width="949" height="597" alt="Image" src="https://github.com/user-attachments/assets/17b6a6db-e4c7-415e-ada4-a87f27815296" />
+<br>
+
 <img width="946" height="615" alt="Image" src="https://github.com/user-attachments/assets/c8c832b7-e3c7-4f33-9813-c238f351c6c9" />
+<br>
+
+<img width="1117" height="622" alt="Image" src="https://github.com/user-attachments/assets/c99a0365-05c3-4474-8ae7-cf0b7bba6933" />
+<br>
+
+After replacing a cell with large fanout of 10
+
 <img width="927" height="621" alt="Image" src="https://github.com/user-attachments/assets/d57853d6-ee6e-4b89-a2c2-ff43d487f7bd" />
+<br>
+
+The new modified slack value from the report checks command
+
 <img width="949" height="618" alt="Image" src="https://github.com/user-attachments/assets/c4137193-63d6-4d90-80b8-bcbb44fcaf9a" />
-<img width="941" height="658" alt="Image" src="https://github.com/user-attachments/assets/6d5c9ed3-fd2b-4d6b-879f-a773b344cbf0" />
+<br>
+
+After changing synthesis strategy from "AREA O" to "DELAY 3" and then running the timing analysis changes the slack value to -2.79ns.
+
 <img width="948" height="578" alt="Image" src="https://github.com/user-attachments/assets/034bbefb-a1b5-42d6-87e3-a38c271db6d7" />
-<img width="772" height="610" alt="Image" src="https://github.com/user-attachments/assets/bbada315-84f5-4d59-9765-4526400c50e4" />
+<br>
+
+<img width="941" height="658" alt="Image" src="https://github.com/user-attachments/assets/6d5c9ed3-fd2b-4d6b-879f-a773b344cbf0" />
+<br>
 
 </details>
 
