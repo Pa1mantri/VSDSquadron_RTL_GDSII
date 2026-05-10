@@ -110,9 +110,15 @@ RAM is a macro different from a standard cell. These Macro's are placed along wi
 <br>
 
 <img width="962" height="679" alt="Image" src="https://github.com/user-attachments/assets/385f14e5-a0be-4e05-b4fd-855ca9766e1b" />
-<img width="1355" height="826" alt="Image" src="https://github.com/user-attachments/assets/49d62861-6304-4777-b5cd-704cab887eab" />
-<img width="1352" height="825" alt="Image" src="https://github.com/user-attachments/assets/c7002cf1-5c10-47f1-a996-1864ab651e77" />
-<img width="934" height="688" alt="Image" src="https://github.com/user-attachments/assets/053cf3d6-d688-4616-8d18-548eacfeabf7" />
+<br>
 
+<img width="1355" height="826" alt="Image" src="https://github.com/user-attachments/assets/49d62861-6304-4777-b5cd-704cab887eab" />
+<br>
+
+<img width="1352" height="825" alt="Image" src="https://github.com/user-attachments/assets/c7002cf1-5c10-47f1-a996-1864ab651e77" />
+<br>
+
+In the RTL-to-GDSII flow, the PDN is build immediately after floorplanning (and sometimes macro placement), long before you route a single data signal.
+Power and ground (VDD and VSS) need to travel across the entire chip with the least possible resistance. Therefore, they claim the top, thickest metal layers.
 
 </details>
