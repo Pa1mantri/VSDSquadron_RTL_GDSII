@@ -117,15 +117,29 @@ After changing synthesis strategy from "AREA O" to "DELAY 3" and then running th
 <summary><b>PHASE 4 — CTS and Timing with Real Clocks</b></summary>
 <br>
 
+<img width="941" height="694" alt="Image" src="https://github.com/user-attachments/assets/0ebae7f1-fefd-4acd-aca1-a5636eee5d7c" />
+<br>
+
+<img width="952" height="633" alt="Image" src="https://github.com/user-attachments/assets/6ab7f131-0e18-4985-91d7-7f47369e3181" />
+<br>
+
+<img width="935" height="641" alt="Image" src="https://github.com/user-attachments/assets/2b6a555f-0865-4d67-b9da-53704708a984" />
+<br>
+
+<img width="949" height="644" alt="Image" src="https://github.com/user-attachments/assets/f231626d-e908-40b6-ab0a-6bff4354dd15" />
+
+<img width="942" height="619" alt="Image" src="https://github.com/user-attachments/assets/9f67608d-a86c-4798-9c1b-7d6c75382f24" />
+<br>
+
+<img width="941" height="626" alt="Image" src="https://github.com/user-attachments/assets/6144e06d-5cef-43b2-85c4-7f38b98ccc2e" />
+<br>
+
+<img width="937" height="640" alt="Image" src="https://github.com/user-attachments/assets/6c2e2f2b-f77b-47b8-86a0-278485c5174f" />
+<br>
 
 <img width="941" height="638" alt="Image" src="https://github.com/user-attachments/assets/f5387b10-1b9f-4280-845f-5418732a1bba" />
-<img width="935" height="641" alt="Image" src="https://github.com/user-attachments/assets/2b6a555f-0865-4d67-b9da-53704708a984" />
-<img width="949" height="644" alt="Image" src="https://github.com/user-attachments/assets/f231626d-e908-40b6-ab0a-6bff4354dd15" />
-<img width="941" height="694" alt="Image" src="https://github.com/user-attachments/assets/0ebae7f1-fefd-4acd-aca1-a5636eee5d7c" />
-<img width="952" height="633" alt="Image" src="https://github.com/user-attachments/assets/6ab7f131-0e18-4985-91d7-7f47369e3181" />
-<img width="942" height="619" alt="Image" src="https://github.com/user-attachments/assets/9f67608d-a86c-4798-9c1b-7d6c75382f24" />
-<img width="941" height="626" alt="Image" src="https://github.com/user-attachments/assets/6144e06d-5cef-43b2-85c4-7f38b98ccc2e" />
-<img width="937" height="640" alt="Image" src="https://github.com/user-attachments/assets/6c2e2f2b-f77b-47b8-86a0-278485c5174f" />
+<br>
+
 <img width="935" height="417" alt="Image" src="https://github.com/user-attachments/assets/dc53846e-b91a-4d9c-890c-39d2f5a0e229" />
 
 
