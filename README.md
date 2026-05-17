@@ -162,3 +162,36 @@ In the RTL-to-GDSII flow, the PDN is build immediately after floorplanning (and 
 Power and ground (VDD and VSS) need to travel across the entire chip with the least possible resistance. Therefore, they claim the top, thickest metal layers.
 
 </details>
+
+
+## WEEK-2 (Toolchain Mastery and ORFS Execution [Cloud to Local])
+
+<details>
+<summary><b>PHASE 1 — ORFS Execution in GitHub Codespaces</b></summary>
+<br>
+
+</details>
+
+<details>
+<summary><b>PHASE 2 — Toolchain Understanding (Devcontainer Deep Dive)</b></summary>
+<br>
+
+</details>
+
+<details>
+<summary><b>PHASE 3 — Local Installation (Self-Owned Environment)</b></summary>
+<br>
+
+</details>
+
+<details>
+<summary><b>PHASE 4 — Re-Run RTL-to-GDS Locally</b></summary>
+<br>
+
+</details>
+
+<details>
+<summary><b>PHASE 5 — Debugging and Unix Literacy</b></summary>
+<br>
+
+</details>
