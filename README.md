@@ -117,16 +117,27 @@ After changing synthesis strategy from "AREA O" to "DELAY 3" and then running th
 <summary><b>PHASE 4 — CTS and Timing with Real Clocks</b></summary>
 <br>
 
+### Topic: Loading the Design and Propagating Clocks
+
 <img width="941" height="694" alt="Image" src="https://github.com/user-attachments/assets/0ebae7f1-fefd-4acd-aca1-a5636eee5d7c" />
 <br>
+
+Entering the OpenROAD interactive shell to load the post-CTS database and timing libraries. The crucial step here is executing the ``set_propagated_clock`` command. This instructs the timing engine to stop using "ideal" clock estimates (zero delay) and start calculating the actual physical wire and 
+buffer delays introduced during Clock Tree Synthesis.
 
 <img width="952" height="633" alt="Image" src="https://github.com/user-attachments/assets/6ab7f131-0e18-4985-91d7-7f47369e3181" />
 <br>
 
+### Topic: Hold Timing with Real Clocks (Min Path)
+
 <img width="935" height="641" alt="Image" src="https://github.com/user-attachments/assets/2b6a555f-0865-4d67-b9da-53704708a984" />
 <br>
 
+A detailed STA report for the worst-case hold path. Real physical clock skew can sometimes cause a destination flip-flop to receive the clock edge too late, causing fast-moving data to overwrite previous values. This results in a hold timing violation, which the tool will later repair by inserting delay buffers on the data path during the routing stages.
+
 <img width="949" height="644" alt="Image" src="https://github.com/user-attachments/assets/f231626d-e908-40b6-ab0a-6bff4354dd15" />
+
+### Topic: Setup Timing with Real Clocks (Max Path)
 
 <img width="942" height="619" alt="Image" src="https://github.com/user-attachments/assets/9f67608d-a86c-4798-9c1b-7d6c75382f24" />
 <br>
@@ -137,8 +148,14 @@ After changing synthesis strategy from "AREA O" to "DELAY 3" and then running th
 <img width="937" height="640" alt="Image" src="https://github.com/user-attachments/assets/6c2e2f2b-f77b-47b8-86a0-278485c5174f" />
 <br>
 
+A detailed Static Timing Analysis (STA) report for the worst-case setup path. Notice that the clock path now explicitly lists actual physical delays traveling through standard cell clock buffers (like sky130_fd_sc_hd__clkbuf_8 and 16). The introduction of real-world clock delays has exposed a setup violation (negative slack), which is completely normal at this stage and will be targeted during post-CTS optimization.
+
 <img width="941" height="638" alt="Image" src="https://github.com/user-attachments/assets/f5387b10-1b9f-4280-845f-5418732a1bba" />
 <br>
+
+### Topic: Post-CTS Clock Skew Analysis
+
+Using the report_clock_skew command for both setup and hold checks. Because physical clock buffers and wires are now in the design, the clock signal no longer arrives at all flip-flops at the exact same time. This report quantifies that physical skew (for example, showing a 1.07ns variance for setup), which is a realistic reflection of the physical layout.
 
 <img width="935" height="417" alt="Image" src="https://github.com/user-attachments/assets/dc53846e-b91a-4d9c-890c-39d2f5a0e229" />
 
@@ -156,13 +173,14 @@ After changing synthesis strategy from "AREA O" to "DELAY 3" and then running th
 <br>
 
 <img width="1352" height="825" alt="Image" src="https://github.com/user-attachments/assets/c7002cf1-5c10-47f1-a996-1864ab651e77" />
-<br>
 
+----
 In the RTL-to-GDSII flow, the PDN is build immediately after floorplanning (and sometimes macro placement), long before you route a single data signal.
 Power and ground (VDD and VSS) need to travel across the entire chip with the least possible resistance. Therefore, they claim the top, thickest metal layers.
 
 </details>
 
+----
 
 ## WEEK-2 (Toolchain Mastery and ORFS Execution [Cloud to Local])
 
