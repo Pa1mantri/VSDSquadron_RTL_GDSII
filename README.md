@@ -184,7 +184,7 @@ After a successful dev container build, checking whether all the required tools 
 <summary><b>PHASE 2 — Toolchain Understanding (Devcontainer Deep Dive)</b></summary>
 <br>
 
-# Tools Used in PLL Design Project
+# Tools used in the flow
 
 | S.No | Tool Name | Installed From | Purpose in the flow | Stage used | 
 |------|-----------|----------------|---------------------|------------|
@@ -198,7 +198,44 @@ After a successful dev container build, checking whether all the required tools 
 | 8 | Make | Package Manager | Running flow scripts | All the stages | 
 | 9 | Git | Package Manager | Version Cotrol | Environment setup | 
  
-<br>
+----
+
+### **What ORFS automates**
+
+ORFS automates the passing of data between completely separate point tools (Yosys -> OpenROAD -> KLayout). It automates the complete RTL2GDSII flow using Makefiles. Using one command "make all", it generates all the reports and final GDS with the required results.
+
+----
+
+### **How makefiles orchestrate the flow**
+
+It creates switches for every step of the flow. Like make synth, make floorplan, make place, make gui_place. For every operation underneath the make switch
+it runs a script to send the result to the appropriate location and take the appropriate inputs from the correct locations.
+
+The true power of a Makefile is Dependency Tracking. If you edit your Verilog file, the Makefile knows it has to rerun Yosys. It orchestrates the flow by tracking the timestamps of input and output files to ensure steps are only run when necessary.
+
+-----
+
+### **Where synthesis ends and physical design begins**
+
+synthesis means converting RTL into gate level netlist. Yosys creates the netlist. SDC constranints + netlist(from synthesis) is merged into one file .odb file. 
+this odb file is the input for place and route step.
+
+Physical design begins when OpenROAD spins up and imports three separate things: The Yosys Verilog netlist, The technology files (LEF/LIB) and The SDC constraints (Separate file) Once OpenROAD reads all three of those pieces into its memory to initialize the floorplan,then it saves that combined state as the very first 1_synth.odb database.
+
+-----
+
+### **Where timing is checked**
+
+At every stage actually. After synthesis, after placement we call it prelayout sta with ideal clocks. after cts pre-layout sta with actual clocks.after routing 
+post layout sta
+
+------
+
+### **Where GDS is produced**
+
+OpenROAD finishes by producing a .def or .odb file, which is just an abstract text description of where the wires are. GDS is produced during the make finish stage. A completely different tool (KLayout or Magic) takes the abstract OpenROAD routing data and physically merges it with the exact, proprietary polygon shapes provided by the foundry (SkyWater) to draw the final photographic mask (.gds).
+
+------
 
 </details>
 
