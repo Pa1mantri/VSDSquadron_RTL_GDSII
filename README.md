@@ -174,12 +174,98 @@ Cloned this repo `` https://github.com/vsdip/vsd-scl180-orfs ``and then launched
 
 After a successful dev container build, checking whether all the required tools are present.
 
+#### Task 1.1 — Repository Setup & Environment Verification
 
+This task verifies that the OpenROAD devcontainer environment was successfully built in the cloud and all necessary physical design tools are correctly installed and accessible in the system path.
+
+**1. Toolchain Version Verification**
+
+![Tool Versions](Week-2/Phase-1/version.PNG)  
+
+Terminal output displaying the successful installation and version checks for the core toolchain components within the GitHub Codespaces container: OpenROAD (v2.0), Yosys (0.58), Python (3.10.12), and GNU Make (4.3).
+
+**2. Synthesis Execution**
+
+![Synthesis Run](Week-2/Phase-1/Synth.PNG)  
+
+The execution log of the synthesis stage showing the Yosys engine successfully parsing the Verilog RTL, linking the Sky130 standard cell libraries, and generating the initial OpenROAD database (`1_synth.odb`).
+
+**3. Synthesis Statistical Report**
+
+![Synthesis Report](Week-2/Phase-1/Synth_report.PNG)
+
+The synthesis statistical report detailing the post-synthesis metrics. It shows an initial estimated design area of 61,097 µm² at 100% utilization before physical floorplanning and placement expand the core.
+
+**4. Floorplan Initialization Log**
+
+![Floorplan Log](Week-2/Phase-1/floorplan_log.PNG) 
+
+The floorplan execution log confirming the core area initialization, standard cell track generation, and an initial design area of 61,496 µm² with 46% utilization.
+
+**5. Power Delivery Network (PDN) Generation**
+
+![Floorplan PDN](Week-2/Phase-1/floorplan_pdn.PNG) 
+
+Terminal output showing the successful insertion of the Power Delivery Network (PDN) grid, which is essential for routing VDD and VSS across the chip without voltage drop.
+
+**6. Physical Placement Execution**
+
+![Placement Execution](Week-2/Phase-1/placement.PNG)  
+
+Terminal log for the global and detailed placement stages, showing standard cells legally placed into rows with an updated design area of 69,948 µm² and a core utilization of 52%.
+
+**7. Detailed Placement GUI Visualization**
+
+![Placement GUI](Week-2/Phase-1/placement_gui.PNG) 
+
+The OpenROAD GUI rendering the detailed placement database, visually confirming that all standard cells are packed and snapped to the site rows within the defined core boundary.
+
+**8. Clock Tree Synthesis (CTS) & Resizing**
+
+![CTS Log and Resizer](Week-2/Phase-1/cts_log_resizer.PNG) 
+
+The Clock Tree Synthesis log showing buffer insertions and aggressive resizing to repair timing violations, resulting in a design area of 75,857 µm² at 57% utilization.
+
+**9. Routing Stage Completion**
+
+![Routing Completion](Week-2/Phase-1/routing_done.PNG)  
+
+Terminal output confirming the successful completion of the global and detailed routing stages, followed by the insertion of 10,342 filler cells to ensure strict DFM (Design for Manufacturability) compliance.
+
+**10. Routing Violations Check**
+
+![Routing DRC Violations](Week-2/Phase-1/route_zero_violations.PNG)
+
+The routing antenna and DRC checker output proudly displaying zero net violations and zero pin violations, indicating a perfectly clean and manufacturable routing database.
+
+**11. Detailed Routing GUI Visualization**
+
+![Routing GUI](Week-2/Phase-1/route_gui.PNG) 
+
+The OpenROAD GUI showcasing the massive, multi-layered maze of metal interconnects successfully routing data signals and the clock tree across the standard cells.
+
+**12. Final GDSII Generation**
+
+![GDS in KLayout](Week-2/Phase-1/gds_klayout.PNG) 
+
+The final, fab-ready `.gds` binary file rendered visually via KLayout in the Codespaces environment, marking the successful end of the automated physical layout flow.
+
+**13. Total Execution Runtime**
+
+![Total Runtime](Week-2/Phase-1/total_runtime.PNG)  
+
+The final `make elapsed` summary table aggregating the exact wall-clock compute time. The complete cloud-based RTL-to-GDS flow successfully finished with a total runtime of 2189 seconds (~36.5 minutes).
+
+**14. Final Post-Route Timing Report**
+
+![Final Timing Report](Week-2/Phase-1/clk_rpt_WNS_TNS.PNG)  
+
+The ultimate post-route timing report confirming physical design success. The engine's optimizations resulted in a manageable Worst Negative Slack (WNS) of -0.57ns and a Total Negative Slack (TNS) of -10.31ns.
+
+---
 
 <br>
-
 </details>
-
 <details>
 <summary><b>PHASE 2 — Toolchain Understanding (Devcontainer Deep Dive)</b></summary>
 <br>
