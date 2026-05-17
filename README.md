@@ -169,11 +169,35 @@ Power and ground (VDD and VSS) need to travel across the entire chip with the le
 <details>
 <summary><b>PHASE 1 — ORFS Execution in GitHub Codespaces</b></summary>
 <br>
+ 
+Cloned this repo `` https://github.com/vsdip/vsd-scl180-orfs ``and then launched github codespaces.
+
+After a successful dev container build, checking whether all the required tools are present.
+
+
+
+<br>
 
 </details>
 
 <details>
 <summary><b>PHASE 2 — Toolchain Understanding (Devcontainer Deep Dive)</b></summary>
+<br>
+
+# Tools Used in PLL Design Project
+
+| S.No | Tool Name | Installed From | Purpose in the flow | Stage used | 
+|------|-----------|----------------|---------------------|------------|
+| 1 | OpenROAD | Compiled from source | Bind all the tools for PnR flow | All the stages after Synthesis |
+| 2 | Yosys |Compiled from source  | Synthesizing the netlist | Synthesis |
+| 3 | TritonCTS | Integrated within OpenROAD | Generation of Clock Tree | During CTS | 
+| 4 | FastRoute | Integrated within OpenROAD | Global Routing | Routing | 
+| 5 | OpenSTA | Integrated within OpenROAD | Static Timing Analysis | Timing check at all stages | 
+| 6 | KLayout | Compiled from source |Layout Viewer | Final sign-off & GDS generation | 
+| 7 | Python | Package Manager | Calculating Run times | Reporting & log creation | 
+| 8 | Make | Package Manager | Running flow scripts | All the stages | 
+| 9 | Git | Package Manager | Version Cotrol | Environment setup | 
+ 
 <br>
 
 </details>
@@ -187,6 +211,13 @@ Power and ground (VDD and VSS) need to travel across the entire chip with the le
 <details>
 <summary><b>PHASE 4 — Re-Run RTL-to-GDS Locally</b></summary>
 <br>
+
+| Metric        | Cloud | Local |
+|----------------|------|-------|
+| Runtime        |  2189s     |   6855s     |
+| WNS            |  -0.57     |  -0.76      |
+| TNS            |  -10.31    |  -16.28     |
+| GDS Generated  |    Yes     |    Yes      |
 
 </details>
 
