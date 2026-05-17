@@ -170,13 +170,9 @@ Power and ground (VDD and VSS) need to travel across the entire chip with the le
 <summary><b>PHASE 1 — ORFS Execution in GitHub Codespaces</b></summary>
 <br>
  
-Cloned this repo `` https://github.com/vsdip/vsd-scl180-orfs ``and then launched github codespaces.
-
-After a successful dev container build, checking whether all the required tools are present.
-
 #### Task 1.1 — Repository Setup & Environment Verification
 
-This task verifies that the OpenROAD devcontainer environment was successfully built in the cloud and all necessary physical design tools are correctly installed and accessible in the system path.
+Cloned this repo `` https://github.com/vsdip/vsd-scl180-orfs ``and then launched github codespaces. This task verifies that the OpenROAD devcontainer environment was successfully built in the cloud and all necessary physical design tools are correctly installed and accessible in the system path.
 
 **1. Toolchain Version Verification**
 
@@ -230,7 +226,7 @@ The Clock Tree Synthesis log showing buffer insertions and aggressive resizing t
 
 ![Routing Completion](Week-2/Phase-1/routing_done.PNG)  
 
-Terminal output confirming the successful completion of the global and detailed routing stages, followed by the insertion of 10,342 filler cells to ensure strict DFM (Design for Manufacturability) compliance.
+Terminal output confirming the successful completion of the global and detailed routing stages, followed by the insertion of 10,342 filler cells.
 
 **10. Routing Violations Check**
 
