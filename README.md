@@ -243,6 +243,22 @@ OpenROAD finishes by producing a .def or .odb file, which is just an abstract te
 <summary><b>PHASE 3 — Local Installation (Self-Owned Environment)</b></summary>
 <br>
 
+The image below shows the tools that are locally installed to run the flow
+
+![OpenROAD Binary Output](Week-2/Phase-3/openroad_binary.PNG)
+
+The OpenROAD toolchain supports two installation approaches: a pre-built binary installation (used in the Cloud Codespaces environment) and a manual compilation from source (used for the local Ubuntu VM).
+
+![OpenROAD Success Both](Week-2/Phase-3/openroad_success_both.PNG)
+
+The dependencies required to compile openroad from the source.
+
+![OpenROAD Dependencies](Week-2/Phase-3/openroad_dependencies.PNG)
+
+Successful compilation of the OpenROAD toolchain from source. The terminal indicates a 100% build completion and verifies the executable by querying the installed version (26Q2-1229-g08035c8730).
+
+![Finally Success](Week-2/Phase-3/finally.PNG)
+
 </details>
 
 <details>
