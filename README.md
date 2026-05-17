@@ -278,4 +278,23 @@ Successful compilation of the OpenROAD toolchain from source. The terminal indic
 <summary><b>PHASE 5 — Debugging and Unix Literacy</b></summary>
 <br>
 
+### Essential Unix Commands for Physical Design
+
+During the RTL-to-GDSII flow, navigating thousands of lines of logs and deeply nested directories requires basic Unix literacy. Here are three incredibly powerful commands used to extract physical design metrics efficiently:
+
+#### 1. The `cat` Command
+**Description:** Short for "concatenate," `cat` is used to instantly read the contents of a file and print it directly to the terminal. In physical design, it is perfect for quickly reading short summary files, like the final timing reports, without having to open a heavy text editor.
+
+![CAT Command - WNS and TNS](Week-2/Phase-5/cat_WNS_TNS.PNG)
+
+#### 2. The `find` Command
+**Description:** The `find` command is a search engine for your terminal. When an automated flow generates hundreds of intermediate database files, `find` allows you to instantly locate a specific file (like a `.def` or `.gds`) by searching through the current directory and all sub-directories.
+
+![FIND Command](Week-2/Phase-5/find.PNG)
+
+#### 3. The `grep` Command
+**Description:** Short for "Global Regular Expression Print," `grep` is arguably the most used Unix command in VLSI. It allows you to search for a specific word or phrase inside a massive file and prints only the lines containing that phrase. Here, it is used to instantly extract the exact "Design area" metric from a massive synthesis log file without scrolling manually.
+
+![GREP Command - Design Area](Week-2/Phase-5/grep_design_area.PNG)
+
 </details>
