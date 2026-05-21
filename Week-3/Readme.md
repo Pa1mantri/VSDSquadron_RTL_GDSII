@@ -31,8 +31,13 @@ Firmware C file (.c) is converted into .elf and then .hex. Hardware files inlcud
 
 **How testbench interacts with the design**
 
+In Standlone testing, the testbench is only wrapping the internal management core, not the whole chip. Because the core is exposed, the testbench interacts directly with internal wires. 
+In Caravel testing, the testbench wraps the massive, complete chip. It must interact by providing the main chip power and looking strictly at the external GPIO pads.
+
 
 **How PASS/FAIL is determined**
+
+A wire from the verilog testbench checks on the C firmware. In standalone testing it checks on the internal wires. In caravel testing it checks on the external physical pin. The testbench uses Verilog wait statements to pause its execution until the firmware outputs a specific code. Once unlocked by the code, the testbench uses an if statement to verify if the peripheral's data matches the expected result, printing FAIL and aborting if it is wrong, or printing PASS once all checks are completed successfully."
 
 
 
