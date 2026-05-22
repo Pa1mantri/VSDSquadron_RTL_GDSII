@@ -10,10 +10,10 @@ git clone https://github.com/vsdip/vsdsquadron-soc
 cd workspace/vsdsquadron-soc/caravel_mgmt_soc_litex/verilog/dv/tests-standalone/spi_master
 make clean
 make
-
 ```
+**SPI master terminal output**
+![SPI Master Passed](Screenshots/Spi_master_Pass.PNG)
 
-spi_master_passed.png
 
 ## Phase - 4
 
