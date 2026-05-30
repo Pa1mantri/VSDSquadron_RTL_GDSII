@@ -438,3 +438,59 @@ During the RTL-to-GDSII flow, navigating thousands of lines of logs and deeply n
 ![GREP Command - Design Area](Week-2/Phase-5/grep_design_area.PNG)
 
 </details>
+
+
+
+<hr>
+
+## WEEK–4 (RTL-to-GDS Implementation of User Project Wrapper)
+
+<details>
+  <summary><strong>PHASE 1 — Analyze the Top-Level Wrapper</strong></summary>
+  <br>
+  
+  Add your content here.
+  
+</details>
+
+<details>
+  <summary><strong>PHASE 2 — Prepare the ORFS Design Environment</strong></summary>
+  <br>
+  
+  Add your content here.
+  
+</details>
+
+<details>
+  <summary><strong>PHASE 3 — Apply 100 MHz Clock Constraint</strong></summary>
+  <br>
+  
+  Add your content here.
+  
+</details>
+
+<details>
+  <summary><strong>PHASE 4 — Run the RTL-to-GDS Flow</strong></summary>
+  <br>
+  
+  Add your content here.
+  
+</details>
+
+<details>
+  <summary><strong>PHASE 5 — Outputs for Gate-Level Verification Preparation</strong></summary>
+  <br>
+  
+  Add your content here.
+  
+</details>
+
+<details>
+  <summary><strong>PHASE 6 — Debugging and Issue Resolution</strong></summary>
+  <br>
+  
+  Add your content here.
+  
+</details>
+
+<hr>
