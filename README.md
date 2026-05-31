@@ -481,7 +481,78 @@ During the RTL-to-GDSII flow, navigating thousands of lines of logs and deeply n
   <summary><strong>PHASE 5 — Outputs for Gate-Level Verification Preparation</strong></summary>
   <br>
   
-  Add your content here.
+This section documents all the necessary files and their locations after the RTL2GDSII run is completed for gate-level verification.
+
+  ---
+  ## 1. Synthesized netlist
+
+Gate level representation of the RTL, resulted after the ``make synth`` stage.
+
+### Location
+```
+/home/vsdsquadron/workspace/vsd-scl180-orfs/orfs/flow/results/sky130hd/user_project_wrapper/base/1_2_yosys.v
+```
+  
+  ---
+  ## 2. Final netlist
+
+The post-route netlist is generated after placement, CTS, and routing are completed, including the insertion of clock buffers, clock tree and any final optimizations.
+
+### Location
+```
+/results/sky130hd/user_project_wrapper/base/6_final.v
+```
+
+  ---
+  ## 3. Routed database
+
+A routed database (.db or similar format) is a comprehensive, tool-specific binary file that saves the complete physical and logical state of a design—including geometry, placement, routing traces, timing data, and library references—so the exact layout environment can be reloaded later without starting over.
+
+While the routed netlist contains logical cells and their connections, .db file contains cell connections, physical coordinates, metal routing shapes, power grids, and timing/constraint data.
+
+### Location
+```
+/results/sky130hd/user_project_wrapper/base/5_route.odb
+```
+
+  ---
+  ## 4. Final filled database
+
+The final filled database contains all the geometric and logical information from the routed database, but it includes essential non-logical additions required by the silicon foundry for manufacturing.
+
+The routed database is the complete functional design. The final database takes that functional design and adds filler cells, dummy metal, and redundant vias to make it physically manufacturable at the foundry.
+
+### Location
+```
+/results/sky130hd/user_project_wrapper/base/6_1_fill.odb
+```
+ 
+  ---
+  ## 5. GDSII
+
+The Exported, translated version of final filled database. While the final database is a proprietary, tool-specific file (like a Cadence or Synopsys database, in this case OpenRoad) that knows about logical connections, timing, and constraints, GDSII strips all of that context away.
+
+When the final database is converted to GDSII, the output is simply a standardized, binary file containing raw 2D geometric shapes (polygons, lines, and text labels) mapped to specific fabrication layers.
+
+### Location
+```
+/results/sky130hd/user_project_wrapper/base/6_final.gds
+```
+ 
+  ---
+  ## 6. Timing report
+
+A timing report is generated using Static Timing Analysis (STA) to definitively prove that the chip will meet its target clock speeds and function correctly across all conditions before it is sent to the foundry.
+
+### Location
+```
+/home/vsdsquadron/workspace/vsd-scl180-orfs/orfs/flow/reports/sky130hd/user_project_wrapper/base/6_finish.rpt
+/home/vsdsquadron/workspace/vsd-scl180-orfs/orfs/flow/reports/sky130hd/user_project_wrapper/base/4_cts_final.rpt (timing report after cts)
+```
+
+  ---
+## Output folders generated after the flow
+![final folders]()
   
 </details>
 
