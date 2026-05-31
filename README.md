@@ -545,25 +545,95 @@ The wrapper depends on the lower-level modules.
 <details>
   <summary><strong>PHASE 2 — Prepare the ORFS Design Environment</strong></summary>
   <br>
+
+The directory structure of the files required to run the flow is given below. The config.mk file also specifies fixed die and core areas instead of using core_utilization to determine the chip area. The core and die areas are chosen to accommodate all I/O pins with the required margin, as the previous run resulted in an error with the earlier area settings.
   
   ![Directory Structure and configuration file](Week-4/directory_structure_&_config_file.PNG)
+
+  Tools used 
+  ```
+yosys
+OpenRoad
+```
+
+The following executable paths were used for the complete RTL-to-GDSII flow:
+
+```
+/home/vsdsquadron/workspace/yosys/yosys
+/home/vsdsquadron/workspace/OpenROAD/build/bin/openroad
+```
   
 </details>
 
 <details>
   <summary><strong>PHASE 3 — Apply 100 MHz Clock Constraint</strong></summary>
   <br>
+
+The objective of Phase-3 is to define and apply a 100MHz clock constraint for the design. This enables timing-driven synthesis and ensures that the design meets the required operating frequency.
+
+### 1. Clock Identification
+
+The clock signal is identified from the top-level module `user_project_wrapper` is ``wb_clk_i``
+
+The signal `wb_clk_i` serves as the primary clock input and drives all synchronous elements in the design through the Wishbone interface.
+
+### 2. Clock Constraint Definition
+
+The clock constraint is defined in the Synopsys Design Constraints (SDC) file as:
+
+```tcl
+create_clock -name wb_clk_i -period 10 [get_ports wb_clk_i]
+```
+
+This constraint specifies the clock characteristics for timing analysis.
+
+### 3. Constraint File
+
+- **File:** `constraint.sdc`
+
+**Content:**
+
+```tcl
+create_clock -name wb_clk_i -period 10 [get_ports wb_clk_i]
+```
+ ![Constraints file](Week-4/sdc_file.PNG)
+
+### 4. Explanation of Constraint
+
+- `create_clock` -> Defines a clock for timing analysis
+- `-name wb_clk_i` -> Assigns a name to the clock
+- `-period 10` -> Specifies the clock period in nanoseconds
+- `[get_ports wb_clk_i]` -> Applies the constraint to the clock input port
+
+This ensures that all timing paths are evaluated with respect to the defined clock period.
+
+### 5. Role in ORFS Flow
+
+During the ORFS flow, the constraint file is read and applied during synthesis and timing analysis.
+
+The clock constraint is used to:
+
+- Perform static timing analysis (STA)
+- Optimize logic to meet timing requirements
+- Evaluate setup and hold constraints
+- Generate timing reports
+
+### 6. Constraint Validation
+
+Successful application of the clock constraint is confirmed when:
+
+- The clock is detected in timing reports
+- No missing clock warnings are reported
+- Timing analysis (STA) is performed
+- Slack values are computed for timing paths
  
-  ![Constraints file](Week-4/sdc_file.PNG)
-  
+   
 </details>
 
 <details>
   <summary><strong>PHASE 4 — Run the RTL-to-GDS Flow</strong></summary>
   <br>
   
-  ### RTL2GDSII Flow for ``user_project_wrapper``
-
 This section documents the complete RTL2GDSII flow executed for the `user_project_wrapper` design, along with screenshots captured at each major stage of the flow.
 
 ---
@@ -727,15 +797,32 @@ A timing report is generated using Static Timing Analysis (STA) to definitively 
 
   ---
 ## Output folders generated after the flow
-![final folders]()
+![final folders](Week-4/Phase-4/final_folders.PNG)
+
+Output at the end of the flow
+
+![terminal at the end of the flow](Week-4/Phase-4/final_success.PNG)
   
 </details>
 
 <details>
   <summary><strong>PHASE 6 — Debugging and Issue Resolution</strong></summary>
   <br>
-  
-  Add your content here.
+
+This section includes all the Issues faced during the flow and the debugging methods used
+
+---
+
+Error in synthesis stage because the openroad executable path is not given. Even for synthesis which deals with logic gates and not physical implementation, Openroad executable path is required to generate .odb file which is required further down the flow.
+ 
+ ![Openroad path error](Week-4/synth_error_at_the_end.PNG)
+ 
+`defines.v` has to be read first to initialize the variable before using them, if not it results in the following error. To get rid of this error, the verilog files are exported in the order preferred in the config.mk file instead of just locating and pointing all the .v files in the folder.
+ ![Verilog files order mismatch](Week-4/yosys_error_new_path.PNG)
+ 
+ Due to this error, we choose the die area and core area in the config.mk instead of core_utilization factor.
+ 
+ ![I/O pin mismatch](Week-4/placement_error.PNG)
   
 </details>
 
