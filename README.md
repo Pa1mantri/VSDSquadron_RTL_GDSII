@@ -473,7 +473,77 @@ During the RTL-to-GDSII flow, navigating thousands of lines of logs and deeply n
   <summary><strong>PHASE 4 — Run the RTL-to-GDS Flow</strong></summary>
   <br>
   
-  Add your content here.
+  ## RTL2GDSII Flow for `user_project_wrapper`
+
+This section documents the complete RTL2GDSII flow executed for the `user_project_wrapper` design, along with screenshots captured at each major stage of the flow.
+
+### 1. Synthesis
+
+In the synthesis stage, the RTL design is converted into a gate-level netlist using the standard cell library.
+
+![Synthesis Success](Week-4/Phase-4/synth_success.PNG)
+
+![Synthesis Statistics](Week-4/Phase-4/synth_stats_success.PNG)
+
+### 2. Floorplanning
+
+In the floorplanning stage, the core area, die area, and initial physical layout constraints are defined for the design as letting utilization factor determine the area results in an error in the placement stage.
+
+![Floorplan Configuration](Week-4/Phase-4/config_new_file_die_area.PNG)
+
+![Floorplan Success](Week-4/Phase-4/floorplan_success.PNG)
+
+### 3. Placement
+
+In the placement stage, the synthesized standard cells are placed inside the core area based on timing and congestion considerations.
+
+![Placement Success](Week-4/Phase-4/placement_success_new_openraod.PNG)
+
+![Placement GUI](Week-4/Phase-4/gui_placement.PNG)
+
+### 4. Clock Tree Synthesis
+
+In the CTS stage, clock buffers are inserted to distribute the clock signal properly and reduce clock skew across the design.
+
+![CTS Success](Week-4/Phase-4/cts_success.PNG)
+
+Min Clock Period = 2.53ns and a maximum frequency of 394.48MHz.
+
+![CTS Report](Week-4/Phase-4/cts_report.PNG)
+
+### 5. Routing
+
+In the routing stage, all placed cells are connected through metal interconnect layers according to the netlist connectivity.
+
+![Routing Success](Week-4/Phase-4/routing_success.PNG)
+
+### 6. Fill Insertion
+
+In the fill insertion stage, filler cells are added after routing to maintain physical continuity and satisfy layout requirements.
+
+![Fill Insertion](Week-4/Phase-4/filler_final_after_routing.PNG)
+
+### 7. Final Database Generation
+
+In the final database generation stage, ``6_final.odb`` the routed and filled design database is finalized for signoff checks and downstream export. The ``6_final.odb`` file is the creation of the last physical-design database inside the EDA tool after routing, fill insertion, and signoff checks. The final GDS generation is the export of that completed database into the tapeout-ready GDSII file for fabrication.
+
+
+### 8. Final GDS Generation
+
+In the final GDS generation stage, the completed physical layout is exported as a GDSII file for fabrication handoff.
+
+![Final GUI](Week-4/Phase-4/gui_final.PNG)
+
+
+### Timing Analysis
+
+The final timing analysis report is used to verify that the design meets timing requirements after implementation.
+
+WNS = 0, TNS = 0 and a Worst slack is 7.52ns
+
+![Timing Analysis](Week-4/Phase-4/Timing_analysis_report.PNG)
+
+
   
 </details>
 
