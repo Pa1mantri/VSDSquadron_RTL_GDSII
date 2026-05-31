@@ -449,23 +449,112 @@ During the RTL-to-GDSII flow, navigating thousands of lines of logs and deeply n
   <summary><strong>PHASE 1 — Analyze the Top-Level Wrapper</strong></summary>
   <br>
   
-  Add your content here.
-  
+The top-level module of the design is ``user_project_wrapper``. This module acts as an interface between the user project and the Caravel SoC. It connects the design to the Wishbone bus, GPIO pins, logic analyzer signals, and interrupt outputs.
+
+## Interface Overview
+
+### Wishbone Bus Interface
+
+Used for communication between the CPU and the user logic.
+
+- `wb_clk_i` -> Clock input
+- `wb_rst_i` -> Reset input
+- `wbs_stb_i`, `wbs_cyc_i`, `wbs_we_i` -> Control signals
+- `wbs_dat_i`, `wbs_adr_i` -> Input data and address
+- `wbs_ack_o`, `wbs_dat_o` -> Output response
+
+### GPIO Interface
+
+Used for interaction with external devices.
+
+- `io_in` -> Input pins
+- `io_out` -> Output pins
+- `io_oeb` -> Output enable
+
+### Logic Analyzer Interface
+
+Used for internal debugging and signal observation.
+
+- `la_data_in`
+- `la_data_out`
+- `la_oenb`
+
+### Interrupt Interface
+
+Used to send interrupt signals to the processor.
+
+- `user_irq`
+
+## Clock and Reset
+
+- **Clock:** `wb_clk_i`
+- **Reset:** `wb_rst_i`
+- **Target clock frequency:** 100 MHz
+- **Clock period:** 10 ns
+
+## Module Instantiations
+
+The following modules are instantiated inside the wrapper:
+
+#### `debug_regs`
+
+This module implements debug registers accessible through the Wishbone interface.
+
+#### `user_project_gpio_example` *(optional)*
+
+Instantiated only when `GPIO_TESTING` is enabled.
+
+#### `user_project_la_example` *(optional)*
+
+Instantiated only when `LA_TESTING` is enabled.
+
+## Dependency Tree
+
+```text
+user_project_wrapper
+├── debug_regs
+├── user_project_gpio_example (optional)
+└── user_project_la_example (optional)
+```
+
+## RTL Files Required
+
+The following RTL files are required for synthesis:
+
+- `user_project_wrapper.v`
+- `debug_regs.v`
+- `defines.v`
+- `user_project_gpio_example.v` *(optional)*
+- `user_project_la_example.v` *(optional)*
+
+## Compilation Dependencies
+
+The modules must be compiled in the following order:
+
+1. `debug_regs.v`
+2. `user_project_gpio_example.v` *(optional)*
+3. `user_project_la_example.v` *(optional)*
+4. `user_project_wrapper.v`
+
+The wrapper depends on the lower-level modules.
+
+---
+ 
 </details>
 
 <details>
   <summary><strong>PHASE 2 — Prepare the ORFS Design Environment</strong></summary>
   <br>
   
-  Add your content here.
+  ![Directory Structure and configuration file](Week-4/directory_structure_&_config_file.PNG)
   
 </details>
 
 <details>
   <summary><strong>PHASE 3 — Apply 100 MHz Clock Constraint</strong></summary>
   <br>
-  
-  Add your content here.
+ 
+  ![Constraints file](Week-4/sdc_file.PNG)
   
 </details>
 
@@ -473,9 +562,11 @@ During the RTL-to-GDSII flow, navigating thousands of lines of logs and deeply n
   <summary><strong>PHASE 4 — Run the RTL-to-GDS Flow</strong></summary>
   <br>
   
-  ## RTL2GDSII Flow for `user_project_wrapper`
+  ### RTL2GDSII Flow for ``user_project_wrapper``
 
 This section documents the complete RTL2GDSII flow executed for the `user_project_wrapper` design, along with screenshots captured at each major stage of the flow.
+
+---
 
 ### 1. Synthesis
 
@@ -485,6 +576,8 @@ In the synthesis stage, the RTL design is converted into a gate-level netlist us
 
 ![Synthesis Statistics](Week-4/Phase-4/synth_stats_success.PNG)
 
+---
+
 ### 2. Floorplanning
 
 In the floorplanning stage, the core area, die area, and initial physical layout constraints are defined for the design as letting utilization factor determine the area results in an error in the placement stage.
@@ -493,6 +586,8 @@ In the floorplanning stage, the core area, die area, and initial physical layout
 
 ![Floorplan Success](Week-4/Phase-4/floorplan_success.PNG)
 
+---
+
 ### 3. Placement
 
 In the placement stage, the synthesized standard cells are placed inside the core area based on timing and congestion considerations.
@@ -500,6 +595,8 @@ In the placement stage, the synthesized standard cells are placed inside the cor
 ![Placement Success](Week-4/Phase-4/placement_success_new_openraod.PNG)
 
 ![Placement GUI](Week-4/Phase-4/gui_placement.PNG)
+
+---
 
 ### 4. Clock Tree Synthesis
 
@@ -511,11 +608,15 @@ Min Clock Period = 2.53ns and a maximum frequency of 394.48MHz.
 
 ![CTS Report](Week-4/Phase-4/cts_report.PNG)
 
+---
+
 ### 5. Routing
 
 In the routing stage, all placed cells are connected through metal interconnect layers according to the netlist connectivity.
 
 ![Routing Success](Week-4/Phase-4/routing_success.PNG)
+
+---
 
 ### 6. Fill Insertion
 
@@ -523,10 +624,13 @@ In the fill insertion stage, filler cells are added after routing to maintain ph
 
 ![Fill Insertion](Week-4/Phase-4/filler_final_after_routing.PNG)
 
+---
+
 ### 7. Final Database Generation
 
 In the final database generation stage, ``6_final.odb`` the routed and filled design database is finalized for signoff checks and downstream export. The ``6_final.odb`` file is the creation of the last physical-design database inside the EDA tool after routing, fill insertion, and signoff checks. The final GDS generation is the export of that completed database into the tapeout-ready GDSII file for fabrication.
 
+---
 
 ### 8. Final GDS Generation
 
@@ -534,6 +638,7 @@ In the final GDS generation stage, the completed physical layout is exported as 
 
 ![Final GUI](Week-4/Phase-4/gui_final.PNG)
 
+---
 
 ### Timing Analysis
 
