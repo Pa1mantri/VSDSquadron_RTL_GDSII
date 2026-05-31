@@ -496,15 +496,15 @@ Used to send interrupt signals to the processor.
 
 The following modules are instantiated inside the wrapper:
 
-#### `debug_regs`
+ `debug_regs`
 
 This module implements debug registers accessible through the Wishbone interface.
 
-#### `user_project_gpio_example` *(optional)*
+ `user_project_gpio_example` *(optional)*
 
 Instantiated only when `GPIO_TESTING` is enabled.
 
-#### `user_project_la_example` *(optional)*
+ `user_project_la_example` *(optional)*
 
 Instantiated only when `LA_TESTING` is enabled.
 
@@ -545,7 +545,7 @@ The wrapper depends on the lower-level modules.
 <details>
   <summary><strong>PHASE 2 — Prepare the ORFS Design Environment</strong></summary>
   <br>
-
+  
 The directory structure of the files required to run the flow is given below. The config.mk file also specifies fixed die and core areas instead of using core_utilization to determine the chip area. The core and die areas are chosen to accommodate all I/O pins with the required margin, as the previous run resulted in an error with the earlier area settings.
   
   ![Directory Structure and configuration file](Week-4/directory_structure_&_config_file.PNG)
@@ -570,6 +570,8 @@ The following executable paths were used for the complete RTL-to-GDSII flow:
   <br>
 
 The objective of Phase-3 is to define and apply a 100MHz clock constraint for the design. This enables timing-driven synthesis and ensures that the design meets the required operating frequency.
+
+---
 
 ### 1. Clock Identification
 
