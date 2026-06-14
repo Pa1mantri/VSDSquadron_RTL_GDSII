@@ -35,7 +35,10 @@ vvp sim_rtl
 
 # Step 3 — Open waveform
 gtkwave rtl_debug_regs_tb.vcd
+
 ```
+
+![RTL Passed](RTL_passed.PNG)
 
 **Result: 14/14 PASS**
 
@@ -73,6 +76,9 @@ gtkwave gls_debug_regs_tb.vcd
 | `-DGL` | Activates `ifdef GL` blocks in testbench — selects separate VCD filename (`gls_debug_regs_tb.vcd`) |
 | `-DFUNCTIONAL` | Tells sky130 cell library to use behavioural models only — skips `specify` timing blocks |
 | `-DUNIT_DELAY="#1"` | Adds 1 ns propagation delay to every gate — prevents zero-delay glitches |
+
+![gls passed](gls_passed_1.PNG)
+![gls passed](gls_passed_2.PNG)
 
 **Result: 14/14 PASS**
 
