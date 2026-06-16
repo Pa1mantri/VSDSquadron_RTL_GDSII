@@ -5,9 +5,9 @@ Issues encountered during RTL simulation, GLS setup, and testbench development.
 
 ---
 
-## Issue 1 — Test 11 Failed (13/14 PASS) on First RTL Run
+## Issue 1 — Test 11 Failed (13/14 PASS) on First RTL Run.
 
-### Symptom
+### Failed at 
 ```
 FAIL | ack exactly 1-cycle (c1=1 c2=0) | ack_c1=1 ack_c2=1
 ```
@@ -26,7 +26,9 @@ Cycle 3: ack=0 → condition true  → write fires AGAIN → ack→1
 ```
 
 The DUT was behaving correctly — each posedge with `cyc=stb=1` is a valid
-new transaction per Wishbone B4 spec. The test design was wrong.
+new transaction per Wishbone Bus spec. The test design was wrong.
+
+**Summary** : Not de-asserting wb_cyc_i, wb_stb_i and wb_we_i signals after one clock cycle results in ack going high in third cycle.
 
 ### Fix
 Changed Test 11 to a proper **single-transaction test**:
@@ -44,7 +46,7 @@ posedge2 → ELSE branch fires, sample ack_c2 (expect 0)
 
 ## Issue 2 — Test 11 Failed in GLS (ack_c1=0, ack_c2=1)
 
-### Symptom
+### Failed at 
 ```
 FAIL | ack exactly 1-cycle (c1=1 c2=0) | ack_c1=0 ack_c2=1
 ```
@@ -53,7 +55,7 @@ Result was backwards — ack appeared to arrive one cycle late.
 ### Root Cause
 GLS uses `UNIT_DELAY="#1"` — every gate in the netlist adds 1 ns of
 propagation delay. The total output delay from clock edge to `wbs_ack_o`
-settling is approximately:
+settling is approximately: 4ns
 
 ```
 Clock tree (2 clkbuf_8 stages) :  ~0.34 ns
