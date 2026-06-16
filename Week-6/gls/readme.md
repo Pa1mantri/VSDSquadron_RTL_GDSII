@@ -110,7 +110,7 @@ The only difference between the two runs is the compiler flags passed to iverilo
 **Assertions on `negedge`, sampling after `posedge`:**  
 All bus signals are driven on the falling edge to give maximum setup time
 before the next rising edge. In GLS, outputs take ~4 ns to propagate through
-the clock tree and gates. Sampling at `@(negedge clk) #1` (5 ns after posedge)
+the clock tree and gates(Since we used ```-DUNIT_DELAY="#1"``)`. Sampling at `@(negedge clk) #1` (5 ns after posedge)
 gives enough margin for both RTL (zero delay) and GLS (~4 ns delay).
 
 **Separate VCD files via `ifdef GL`:**
